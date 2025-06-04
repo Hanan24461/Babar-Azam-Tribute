@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Tribute page to Babar Azam - Pakistan's Cricket Star" />
+    <meta name="keywords" content="Babar Azam, Cricket, Pakistan, Tribute, Fan Page, Stats" />
+    <meta name="author" content="Hanan" />
+    <title>Tribute to Babar Azam | Proud Fan</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pak-green': '#01411C',
+                        'pak-green-light': '#1E6A3D',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/a2e00e6e59.js" crossorigin="anonymous"></script>
+
+    <!-- AOS Animation CSS and JS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <style>
+        /* Parallax background */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Glassmorphism card */
+        .glass-card {
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Text glow */
+        .text-glow-green {
+            text-shadow:
+                0 0 8px #01411C,
+                0 0 15px #1E6A3D;
+        }
+
+        /* Scroll-to-top button */
+        #scrollTopBtn {
+            display: none;
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            z-index: 100;
+            background-color: #01411C;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 10px rgba(1, 65, 28, 0.6);
+            transition: all 0.3s ease;
+        }
+
+        #scrollTopBtn:hover {
+            background-color: #1E6A3D;
+            transform: translateY(-3px);
+        }
+
+        /* Smooth scroll behavior for all anchor links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animated underline effect */
+        .underline-animate {
+            position: relative;
+            display: inline-block;
+        }
+
+        .underline-animate::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #01411C;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .underline-animate:hover::after {
+            transform: scaleX(1);
+        }
+
+        /* Pulse animation for important elements */
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 0 0 rgba(1, 65, 28, 0.7);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(1, 65, 28, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(1, 65, 28, 0);
+            }
+        }
+
+        .pulse-effect {
+            animation: pulse-green 2s infinite;
+        }
+
+        /* Stats counter animation */
+        .counter {
+            transition: all 0.5s ease-out;
+        }
+
+        /* Improved gallery hover effect */
+        .gallery-item {
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery-item img {
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white font-sans">
+
+    <!-- Sticky Navbar -->
+    <header class="fixed w-full bg-black bg-opacity-90 backdrop-blur-md shadow-md z-50">
+        <nav class="max-w-7xl mx-auto flex items-center justify-between p-4">
+            <a href="#hero"
+                class="text-white font-extrabold text-2xl tracking-wide hover:text-pak-green transition-colors duration-300 flex items-center">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg" alt="Pakistan Flag"
+                    class="h-6 mr-2">
+                <span class="underline-animate">BabarAzamFan</span>
+            </a>
+            <button id="nav-toggle"
+                class="md:hidden focus:outline-none text-white hover:text-pak-green transition-colors duration-300">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+            <ul id="nav-menu" class="hidden md:flex space-x-8 font-semibold text-white">
+                <li><a href="#hero"
+                        class="hover:text-pak-green transition-colors duration-300 underline-animate">Home</a></li>
+                <li><a href="#fan" class="hover:text-pak-green transition-colors duration-300 underline-animate">Fan</a>
+                </li>
+                <li><a href="#gallery"
+                        class="hover:text-pak-green transition-colors duration-300 underline-animate">Gallery</a></li>
+                <li><a href="#stats"
+                        class="hover:text-pak-green transition-colors duration-300 underline-animate">Stats</a></li>
+                <li><a href="#timeline"
+                        class="hover:text-pak-green transition-colors duration-300 underline-animate">Timeline</a></li>
+                <li><a href="#video"
+                        class="hover:text-pak-green transition-colors duration-300 underline-animate">Video</a></li>
+                <li><a href="#contact"
+                        class="hover:text-pak-green transition-colors duration-300 underline-animate">Contact</a></li>
+            </ul>
+        </nav>
+        <!-- Mobile Menu -->
+        <ul id="mobile-menu"
+            class="md:hidden hidden flex-col bg-black bg-opacity-95 px-6 py-4 space-y-4 font-semibold text-white">
+            <li><a href="#hero" class="block hover:text-pak-green transition-colors duration-300 py-2">Home</a></li>
+            <li><a href="#fan" class="block hover:text-pak-green transition-colors duration-300 py-2">Fan</a></li>
+            <li><a href="#gallery" class="block hover:text-pak-green transition-colors duration-300 py-2">Gallery</a>
+            </li>
+            <li><a href="#stats" class="block hover:text-pak-green transition-colors duration-300 py-2">Stats</a></li>
+            <li><a href="#timeline" class="block hover:text-pak-green transition-colors duration-300 py-2">Timeline</a>
+            </li>
+            <li><a href="#video" class="block hover:text-pak-green transition-colors duration-300 py-2">Video</a></li>
+            <li><a href="#contact" class="block hover:text-pak-green transition-colors duration-300 py-2">Contact</a>
+            </li>
+        </ul>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative h-screen flex items-center justify-center text-center parallax-bg"
+        style="background-image: url('https://www.cricket.com.au/-/media/News/2023/10/06BabarAzam.ashx');">
+        <div class="absolute inset-0 bg-gradient-to-b from-pak-green/60 to-black/70" aria-hidden="true"></div>
+
+        <div class="relative glass-card p-10 rounded-xl shadow-2xl max-w-2xl mx-4" data-aos="fade-up"
+            data-aos-duration="1500">
+            <h1 class="text-5xl md:text-6xl font-bold mb-4 text-white text-glow-green">Babar Azam</h1>
+            <p class="text-xl md:text-2xl font-light text-gray-200 mb-6">Pakistan's Cricket Captain & Batting Maestro
+            </p>
+            <p class="text-lg italic text-white mb-8">"The King of Modern Cricket"</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="https://www.tiktok.com/@pathan_x_babarian565?is_from_webapp=1&sender_device=pc" target="_blank" rel="noopener"
+                    class="px-6 py-3 bg-pak-green text-white font-semibold rounded-full hover:bg-pak-green-light transition-all duration-300 shadow-md flex items-center justify-center"
+                    aria-label="Follow Babar Azam fan on TikTok">
+                    <i class="fab fa-tiktok mr-2 text-xl"></i> Follow on TikTok
+                </a>
+                <a href="#stats"
+                    class="px-6 py-3 bg-white text-pak-green font-semibold rounded-full hover:bg-gray-200 transition-all duration-300 shadow-md flex items-center justify-center">
+                    <i class="fas fa-chart-line mr-2 text-xl"></i> View Stats
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <a href="#fan" class="text-white text-2xl">
+                <i class="fas fa-chevron-down"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Fan Section -->
+    <section id="fan" class="py-20 px-6 bg-gray-800" data-aos="fade-right" data-aos-duration="1200">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center text-white">
+                <span class="border-b-4 border-pak-green pb-2">About the Fan</span>
+            </h2>
+            <div class="flex flex-col md:flex-row items-center gap-10">
+                <div class="md:w-1/3 flex justify-center">
+                    <div class="relative">
+                        <img src="https://scontent.fkhi17-2.fna.fbcdn.net/v/t39.30808-1/503613899_122113606874872274_4503333712908522728_n.jpg?stp=c0.53.936.936a_dst-jpg_s200x200_tt6&_nc_cat=108&ccb=1-7&_nc_sid=e99d92&_nc_ohc=3mD-8JcVtQgQ7kNvwGLogdj&_nc_oc=AdmsfbrRLt8jcpQHRUcTxBCzUv3ekGzk9E7OWSVmQWUllckbcS6JYwS8860SVM2jbN4&_nc_zt=24&_nc_ht=scontent.fkhi17-2.fna&_nc_gid=AD2kONI3_ZjGNeVHcdqmDA&oh=00_AfIcDRLUW5qLUUOn4Na6ipo2200eOcBcvVjB7Lwga-NejQ&oe=68467783" alt="Hanan - The Fan"
+                            class="rounded-full w-64 h-64 object-cover border-4 border-pak-green shadow-xl pulse-effect">
+                        <div class="absolute -bottom-4 -right-4 bg-pak-green text-white px-4 py-2 rounded-lg shadow-lg">
+                            <i class="fas fa-heart mr-2"></i> Super Fan
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-2/3 glass-card p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4 text-pak-green">Hanan - Web Developer & Cricket Enthusiast
+                    </h3>
+                    <p class="text-gray-300 mb-4">
+                        As a passionate web developer and lifelong cricket fan, I created this tribute page to celebrate
+                        the incredible talent of Babar Azam. His dedication to the sport and his country inspires me
+                        both professionally and personally.
+                    </p>
+                    <p class="text-gray-300 mb-4">
+                        I've been following Babar's career since his debut in 2015, witnessing his rise to become one of
+                        the world's best batsmen and Pakistan's beloved captain.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mt-6">
+                        <span class="bg-pak-green/20 text-pak-green px-4 py-2 rounded-full flex items-center">
+                            <i class="fas fa-code mr-2"></i> Web Developer
+                        </span>
+                        <span class="bg-pak-green/20 text-pak-green px-4 py-2 rounded-full flex items-center">
+                            <i class="fas fa-paint-brush mr-2"></i> UI/UX Designer
+                        </span>
+                        <span class="bg-pak-green/20 text-pak-green px-4 py-2 rounded-full flex items-center">
+                            <i class="fas fa-cricket mr-2"></i> Cricket Analyst
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 px-6 bg-gray-900" data-aos="fade-up" data-aos-duration="1400">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center text-white mb-12">
+                <span class="border-b-4 border-pak-green pb-2">Babar Azam Moments</span>
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="gallery-item rounded-2xl shadow-xl overflow-hidden">
+                    <img src="https://i.pinimg.com/736x/19/86/94/19869438644f48f7cea4b6e752fda769.jpg"
+                        alt="Babar Azam batting" class="w-full h-64 object-half-cover" />
+                    <div class="p-4 bg-gray-800">
+                        <h3 class="font-semibold text-white">Elegant Cover Drive</h3>
+                        <p class="text-gray-400 text-sm">Babar's signature shot</p>
+                    </div>
+                </div>
+                <div class="gallery-item rounded-2xl shadow-xl overflow-hidden">
+                    <img src="https://i.pinimg.com/736x/a0/5f/32/a05f3203e00e216cd8993b4a1b63db0e.jpg"
+                        alt="Babar Azam celebration" class="w-full h-64 object-half-cover" />
+                    <div class="p-4 bg-gray-800">
+                        <h3 class="font-semibold text-white">Century Celebration</h3>
+                        <p class="text-gray-400 text-sm">Another milestone achieved</p>
+                    </div>
+                </div>
+               
+               
+                </div>
+               
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="py-20 px-6 bg-gray-800 text-center" data-aos="fade-up" data-aos-duration="1500">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-12">
+                <span class="border-b-4 border-pak-green pb-2">Career Statistics</span>
+            </h2>
+
+            <div class="mb-12">
+                <h3 class="text-xl font-semibold text-pak-green mb-6">International Career Summary</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
+                    <div class="glass-card p-6 rounded-xl">
+                        <h4 class="text-lg font-medium text-white mb-2">Test Matches</h4>
+                        <div class="text-4xl font-bold text-pak-green">49</div>
+                        <p class="text-gray-300 mt-2">Matches played</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <h4 class="text-lg font-medium text-white mb-2">ODI Matches</h4>
+                        <div class="text-4xl font-bold text-pak-green">114</div>
+                        <p class="text-gray-300 mt-2">Matches played</p>
+                    </div>
+                    <div class="glass-card p-6 rounded-xl">
+                        <h4 class="text-lg font-medium text-white mb-2">T20 Matches</h4>
+                        <div class="text-4xl font-bold text-pak-green">104</div>
+                        <p class="text-gray-300 mt-2">Matches played</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="text-xl font-semibold text-pak-green mb-8">Batting Records</h3>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-white max-w-4xl mx-auto">
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="text-5xl font-extrabold counter" id="matches-count">0</div>
+                    <div class="mt-2 text-lg font-semibold">Total Matches</div>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="text-5xl font-extrabold counter" id="runs-count">0</div>
+                    <div class="mt-2 text-lg font-semibold">Total Runs</div>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="text-5xl font-extrabold counter" id="hundreds-count">0</div>
+                    <div class="mt-2 text-lg font-semibold">Centuries</div>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <div class="text-5xl font-extrabold counter" id="avg-count">0</div>
+                    <div class="mt-2 text-lg font-semibold">Average</div>
+                </div>
+            </div>
+
+            <div class="mt-12 glass-card p-6 rounded-xl max-w-4xl mx-auto">
+                <h4 class="text-lg font-medium text-pak-green mb-4">Recent Achievements</h4>
+                <ul class="text-left text-gray-300 space-y-2">
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-pak-green mt-1 mr-2"></i>
+                        <span>Fastest to 5000 runs in ODI cricket (97 innings)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-pak-green mt-1 mr-2"></i>
+                        <span>ICC Men's ODI Cricketer of the Year 2022</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-pak-green mt-1 mr-2"></i>
+                        <span>Ranked No.1 ODI batsman for 1155 days (as of June 2023)</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-check text-pak-green mt-1 mr-2"></i>
+                        <span>Most runs by a Pakistan batsman in a calendar year (2021 - 939 runs)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section id="timeline" class="py-20 px-6 bg-gray-900" data-aos="fade-left" data-aos-duration="1400">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-white mb-12 text-center">
+                <span class="border-b-4 border-pak-green pb-2">Career Timeline</span>
+            </h2>
+
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-1/2 h-full w-1 bg-pak-green transform -translate-x-1/2"></div>
+
+                <!-- Timeline items -->
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row items-center justify-center relative">
+                        <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
+                            <h3 class="text-xl font-semibold text-white">October 2015</h3>
+                            <p class="text-gray-300">Made international debut against Zimbabwe in ODI</p>
+                        </div>
+                        <div
+                            class="absolute left-1/2 -ml-4 w-8 h-8 bg-pak-green rounded-full border-4 border-gray-900 transform -translate-x-1/2">
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="glass-card p-6 rounded-lg">
+                                <h4 class="text-lg font-medium text-pak-green mb-2">International Debut</h4>
+                                <p class="text-gray-300">Scored 54 runs in his first ODI innings, showing early promise
+                                    of his talent.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row-reverse items-center justify-center relative">
+                        <div class="md:w-1/2 md:pl-12 mb-6 md:mb-0">
+                            <h3 class="text-xl font-semibold text-white">October 2016</h3>
+                            <p class="text-gray-300">First international century</p>
+                        </div>
+                        <div
+                            class="absolute left-1/2 -ml-4 w-8 h-8 bg-pak-green rounded-full border-4 border-gray-900 transform -translate-x-1/2">
+                        </div>
+                        <div class="md:w-1/2 md:pr-12 md:text-right">
+                            <div class="glass-card p-6 rounded-lg">
+                                <h4 class="text-lg font-medium text-pak-green mb-2">Maiden Century</h4>
+                                <p class="text-gray-300">Scored 120 against West Indies in Sharjah, his first of many
+                                    international centuries.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row items-center justify-center relative">
+                        <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
+                            <h3 class="text-xl font-semibold text-white">May 2019</h3>
+                            <p class="text-gray-300">Appointed T20I captain</p>
+                        </div>
+                        <div
+                            class="absolute left-1/2 -ml-4 w-8 h-8 bg-pak-green rounded-full border-4 border-gray-900 transform -translate-x-1/2">
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="glass-card p-6 rounded-lg">
+                                <h4 class="text-lg font-medium text-pak-green mb-2">Leadership Begins</h4>
+                                <p class="text-gray-300">Took over as Pakistan's T20 captain, beginning his leadership
+                                    journey.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row-reverse items-center justify-center relative">
+                        <div class="md:w-1/2 md:pl-12 mb-6 md:mb-0">
+                            <h3 class="text-xl font-semibold text-white">April 2021</h3>
+                            <p class="text-gray-300">Achieved No.1 ODI ranking</p>
+                        </div>
+                        <div
+                            class="absolute left-1/2 -ml-4 w-8 h-8 bg-pak-green rounded-full border-4 border-gray-900 transform -translate-x-1/2">
+                        </div>
+                        <div class="md:w-1/2 md:pr-12 md:text-right">
+                            <div class="glass-card p-6 rounded-lg">
+                                <h4 class="text-lg font-medium text-pak-green mb-2">World's Best Batsman</h4>
+                                <p class="text-gray-300">Became the No.1 ranked ODI batsman in ICC rankings, a position
+                                    he held for a record time.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-12">
+                    <div class="flex flex-col md:flex-row items-center justify-center relative">
+                        <div class="md:w-1/2 md:pr-12 mb-6 md:mb-0 md:text-right">
+                            <h3 class="text-xl font-semibold text-white">November 2022</h3>
+                            <p class="text-gray-300">T20 World Cup Captain</p>
+                        </div>
+                        <div
+                            class="absolute left-1/2 -ml-4 w-8 h-8 bg-pak-green rounded-full border-4 border-gray-900 transform -translate-x-1/2">
+                        </div>
+                        <div class="md:w-1/2 md:pl-12">
+                            <div class="glass-card p-6 rounded-lg">
+                                <h4 class="text-lg font-medium text-pak-green mb-2">World Cup Final</h4>
+                                <p class="text-gray-300">Led Pakistan to the T20 World Cup final in Australia,
+                                    showcasing his leadership.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Highlight Section -->
+    
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-pak-green mb-4">Best ODI Innings</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>158 vs England, 2021</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>125* vs West Indies, 2016</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>115 vs Australia, 2019</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-pak-green mb-4">Best Test Innings</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>196 vs Australia, 2019</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>143 vs Bangladesh, 2021</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>127* vs New Zealand, 2023</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="glass-card p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold text-pak-green mb-4">Best T20I Innings</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>122 vs South Africa, 2021</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>110 vs England, 2021</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-play text-pak-green text-xs mt-1 mr-2"></i>
+                            <span>90* vs Australia, 2022</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-20 px-6 bg-gray-900 text-center parallax-bg"
+        style="background-image: url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80');"
+        data-aos="fade-up" data-aos-duration="1000">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="relative max-w-4xl mx-auto">
+            <blockquote class="text-2xl md:text-3xl italic font-medium text-white">
+                "I don't believe in luck. I believe in hard work. When you work hard, you create your own luck."
+            </blockquote>
+            <p class="mt-6 text-xl text-pak-green font-semibold">– Babar Azam</p>
+            <div class="mt-8 flex justify-center space-x-4">
+                <a href="https://twitter.com/babarazam258" target="_blank"
+                    class="text-white hover:text-pak-green text-2xl">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com/babarazam258/" target="_blank"
+                    class="text-white hover:text-pak-green text-2xl">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/BabarAzamOfficial/" target="_blank"
+                    class="text-white hover:text-pak-green text-2xl">
+                    <i class="fab fa-facebook"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-6 bg-gray-800" data-aos="fade-up" data-aos-duration="1400">
+        <div class="max-w-2xl mx-auto glass-card p-8 rounded-xl shadow-lg">
+            <h2 class="text-3xl font-bold mb-8 text-center text-white">
+                <span class="border-b-4 border-pak-green pb-2">Contact Me</span>
+            </h2>
+            <form id="contactForm" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <label class="block">
+                        <span class="text-white font-semibold">Your Name</span>
+                        <input type="text" name="name" required
+                            class="mt-1 block w-full rounded-md bg-gray-900 text-white border border-pak-green focus:ring-pak-green focus:border-pak-green p-3"
+                            placeholder="Enter your name" />
+                    </label>
+                    <label class="block">
+                        <span class="text-white font-semibold">Email</span>
+                        <input type="email" name="email" required
+                            class="mt-1 block w-full rounded-md bg-gray-900 text-white border border-pak-green focus:ring-pak-green focus:border-pak-green p-3"
+                            placeholder="Enter your email" />
+                    </label>
+                </div>
+                <label class="block">
+                    <span class="text-white font-semibold">Subject</span>
+                    <input type="text" name="subject" required
+                        class="mt-1 block w-full rounded-md bg-gray-900 text-white border border-pak-green focus:ring-pak-green focus:border-pak-green p-3"
+                        placeholder="Message subject" />
+                </label>
+                <label class="block">
+                    <span class="text-white font-semibold">Message</span>
+                    <textarea name="message" required rows="5"
+                        class="mt-1 block w-full rounded-md bg-gray-900 text-white border border-pak-green focus:ring-pak-green focus:border-pak-green p-3"
+                        placeholder="Your message about Babar Azam"></textarea>
+                </label>
+                <button type="submit"
+                    class="w-full bg-pak-green hover:bg-pak-green-light text-white font-bold py-3 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                    <i class="fas fa-paper-plane mr-2"></i> Send Message
+                </button>
+            </form>
+            <p id="formResponse" class="mt-4 text-center text-green-400 hidden">Thank you for your message! I'll get
+                back to you soon.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black text-center">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8">
+                <div class="mb-6 md:mb-0">
+                    <a href="#hero"
+                        class="text-white font-extrabold text-2xl tracking-wide hover:text-pak-green transition-colors duration-300 flex items-center">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Flag_of_Pakistan.svg"
+                            alt="Pakistan Flag" class="h-6 mr-2">
+                        BabarAzamFan
+                    </a>
+                    <p class="mt-2 text-gray-400">A tribute to Pakistan's cricket captain</p>
+                </div>
+
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="https://www.tiktok.com/@Pathan_x_Babrian56" target="_blank"
+                        class="text-gray-400 hover:text-pak-green text-xl transition-colors duration-300">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://twitter.com/" target="_blank"
+                        class="text-gray-400 hover:text-pak-green text-xl transition-colors duration-300">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://instagram.com/" target="_blank"
+                        class="text-gray-400 hover:text-pak-green text-xl transition-colors duration-300">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://youtube.com/" target="_blank"
+                        class="text-gray-400 hover:text-pak-green text-xl transition-colors duration-300">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-gray-500 text-sm">
+                    &copy; 2023 BabarAzamFan. All rights reserved. This is a fan-made tribute page and not affiliated
+                    with Babar Azam or PCB.
+                </p>
+                <p class="mt-2 text-gray-500 text-sm">
+                    Made with <i class="fas fa-heart text-red-500"></i> by Hanan – A Devoted Fan of Babar Azam
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollTopBtn" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Initialize AOS animation library
+        AOS.init({
+            once: true,
+            duration: 800,
+            easing: 'ease-in-out',
+        });
+
+        // Mobile menu toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        navToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            const icon = navToggle.querySelector('i');
+            if (mobileMenu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                navToggle.querySelector('i').classList.remove('fa-times');
+                navToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.style.display = 'block';
+            } else {
+                scrollTopBtn.style.display = 'none';
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const formResponse = document.getElementById('formResponse');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Simulate form submission
+            formResponse.classList.remove('hidden');
+            contactForm.reset();
+
+            setTimeout(() => {
+                formResponse.classList.add('hidden');
+            }, 5000);
+        });
+
+        // Animated counters for stats
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Start counters when stats section is in view
+        const statsSection = document.getElementById('stats');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateValue('matches-count', 0, 267, 2000);
+                    animateValue('runs-count', 0, 11876, 2000);
+                    animateValue('hundreds-count', 0, 30, 2000);
+                    animateValue('avg-count', 0, 54, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(statsSection);
+
+        // Smooth scrolling for all links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
